@@ -697,5 +697,9 @@ class S3ConnectionWrapper(object):
 
 
 def connection(endpoint, debug=None):
+    try:
+        del os.environ['http_proxy']
+    except KeyError:
+        pass
     log.info('creating connection to endpoint: %s' % endpoint)
     return S3ConnectionWrapper(endpoint, debug)

@@ -232,6 +232,10 @@ def check_versioning(endpoint):
     }
 
     data = None
+    try:
+        del os.environ['http_proxy']
+    except KeyError:
+        pass
     req = urllib2.Request(url, data, headers)
     try:
         response = urllib2.urlopen(req)
